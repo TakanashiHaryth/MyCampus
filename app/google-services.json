@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "272254537517",
+    "project_id": "mycampus-5f18a",
+    "storage_bucket": "mycampus-5f18a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272254537517:android:c98aeac7cb87cd75dacda4",
+        "android_client_info": {
+          "package_name": "com.example.harina"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8ys6RncBOFdUJlocCMnF3u83XKnGNEyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

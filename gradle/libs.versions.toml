@@ -1,0 +1,71 @@
+[versions]
+# Build & Kotlin
+agp = "8.13.0"
+kotlin = "1.9.25"
+coroutines = "1.9.0"
+
+# AndroidX Core
+coreKtx = "1.13.1"
+activity = "1.9.3"
+appcompat = "1.7.0"
+constraintlayout = "2.1.4"
+lifecycle = "2.8.6"
+navigation = "2.8.3"
+
+# Material Design
+material = "1.12.0"
+
+# Room Database
+room = "2.6.1"
+
+# Testing
+junit = "4.13.2"
+junitExt = "1.2.1"
+espresso = "3.5.1"
+
+# Optional (Jetpack Compose - boleh guna nanti)
+composeBom = "2025.02.00"
+composeCompiler = "1.5.14"
+activityVersion = "1.11.0"
+firebaseDatabase = "20.3.1"
+gms = "4.4.2"
+
+[libraries]
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+
+# Activity & Lifecycle
+activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+
+# Navigation
+navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+
+# Coroutines
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# Room Database
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+
+# Testing
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-ext = { module = "androidx.test.ext:junit", version.ref = "junitExt" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+
+# Compose (optional)
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
+firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabase" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+google-gms-google-services = { id = "com.google.gms.google-services", version = "4.4.2" }
