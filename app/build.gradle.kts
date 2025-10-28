@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.kapt")
-    alias(libs.plugins.google.gms.google.services)
+    id("com.google.gms.google-services")
 
 }
 
@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     implementation(libs.activity)
+    implementation(libs.firebase.database)
     kapt(libs.room.compiler)
 
     // Coroutines
@@ -69,8 +70,8 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     // firebase
-    implementation(libs.firebase.database)
-
+    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
     // Testing
     testImplementation(libs.junit)

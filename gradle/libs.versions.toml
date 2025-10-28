@@ -1,7 +1,7 @@
 [versions]
 # Build & Kotlin
 agp = "8.13.0"
-kotlin = "1.9.25"
+kotlin = "2.0.21"
 coroutines = "1.9.0"
 
 # AndroidX Core

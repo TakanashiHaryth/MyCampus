@@ -17,22 +17,28 @@ import kotlinx.coroutines.launch
 class LoginPage : AppCompatActivity() {
 
     private lateinit var Db: UserDataBase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login_page)
 
-        var LoginButton = findViewById<Button>(R.id.LogInBtn)
-        var LoginBackButton = findViewById<Button>(R.id.LoginBackBtn)
-        var LoginUsername = findViewById<EditText>(R.id.LogInUsername)
-        var LoginPassword = findViewById<EditText>(R.id.LogInPassword)
-
+        val loginButton = findViewById<Button>(R.id.LogInBtn)
+        val loginBackButton = findViewById<Button>(R.id.LoginBackBtn)
+        val loginUsername = findViewById<EditText>(R.id.LogInUsername)
+        val loginPassword = findViewById<EditText>(R.id.LogInPassword)
 
         Db = UserDataBase.getDatabase(this)
 
-        LoginButton.setOnClickListener {
-            val username = LoginUsername.text.toString()
-            val password = LoginPassword.text.toString()
+        // ✅ Back button listener diletak di luar
+        loginBackButton.setOnClickListener {
+            val intent = Intent(this@LoginPage, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        loginButton.setOnClickListener {
+            val username = loginUsername.text.toString()
+            val password = loginPassword.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
                 val loggedInUser = Db.userDao().login(username, password)
@@ -41,6 +47,7 @@ class LoginPage : AppCompatActivity() {
                         Toast.makeText(this@LoginPage, "Login successful", Toast.LENGTH_SHORT)
                             .show()
                         startActivity(Intent(this@LoginPage, HomePage::class.java))
+                        finish()
                     } else {
                         Toast.makeText(
                             this@LoginPage,
@@ -48,24 +55,14 @@ class LoginPage : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
-                    LoginBackButton.setOnClickListener {}
-                    intent = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(intent)
-
-
-                    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-                        val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                        v.setPadding(
-                            systemBars.left,
-                            systemBars.top,
-                            systemBars.right,
-                            systemBars.bottom
-                        )
-                        insets
-                    }
                 }
             }
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
     }
 }
