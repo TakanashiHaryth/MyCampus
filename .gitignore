@@ -1,15 +1,129 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+# Operating system and editor files
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+.vs/
+.fleet/
+.zed/
+.history/
+.atom/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.class
+*.pyc
+.build/
+.buildlog/
+.swiftpm/
+migrate_working_dir/
+cmake-build-*/
+CMakeUserPresets.json
+
+# Dart and Flutter generated files
+**/.dart_tool/
+**/.pub-cache/
+**/.pub/
+**/build/
+**/coverage/
+**/doc/api/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.widget_preview/
+pubspec_overrides.yaml
+app.*.symbols
+app.*.map.json
+
+# Flutter platform generated files
+**/Flutter/ephemeral/
+**/flutter/ephemeral/
+**/Flutter/.last_build_id
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+**/.symlinks/
+**/Pods/
+**/DerivedData/
+**/xcuserdata/
+
+# Android local configuration and signing credentials
+/android/.gradle/
+/android/.cxx/
+/android/local.properties
+/android/key.properties
+*.jks
+*.keystore
+*.pk8
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+
+# Apple signing credentials and local archives
+*.p8
+*.mobileprovision
+*.xcarchive
+
+# Firebase CLI cache and server-side credentials
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+service-account*.json
+*serviceAccount*.json
+*-firebase-adminsdk-*.json
+firebase-admin*.json
+google-application-credentials*.json
+/firebase-export-*/
+/emulator-data/
+
+# Future Firebase Cloud Functions generated files
+**/node_modules/
+/functions/lib/
+/functions/.runtimeconfig.json
+**/.secret.local
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.p12
+*.pfx
+
+# Flutter Version Manager SDK cache. Keep .fvmrc or legacy fvm_config.json
+# trackable so every contributor can use the same Flutter version.
+.fvm/flutter_sdk
+.fvm/versions/
+.fvm/cache/
+
+# Release binaries belong in GitHub Releases, not source control.
+/dist/
+/artifacts/
+*.apk
+*.aab
+*.ipa
+*.msix
+
+# Local migration archive. The Flutter runtime no longer uses SQLite auth.
+/legacy_sqlite/
+
+# Keep Firebase client configuration tracked. These files contain application
+# identifiers, not Firebase Admin credentials. Backend access must still be
+# protected by Authentication, Firestore rules and appropriate API restrictions:
+#   android/app/google-services.json
+#   ios/Runner/GoogleService-Info.plist
+#   macos/Runner/GoogleService-Info.plist
+#   lib/firebase_options.dart
+#   .firebaserc, firebase.json, firestore.rules, firestore.indexes.json
