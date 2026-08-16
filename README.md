@@ -1,3 +1,13 @@
+<div align="center">
+
+<!-- Anime Header -->
+
+<img src="https://media.tenor.com/EEbyku4nU8gAAAAi/rimuru-spin.gif" width="170" alt="Anime Character"/>
+<img src="https://media1.tenor.com/m/ajHV0O5APUMAAAAC/rimuru-rimuru-tempest.gif" width="170" alt="Anime Character"/>
+<img src="https://media1.tenor.com/m/T6cnb8csQAMAAAAC/%E3%81%A1%E3%82%87%E3%81%93%E3%81%88%E3%81%84-chocoeiru.gif" width="170" alt="Anime Character"/>
+
+<br>
+
 # My Campus — GitHub README
 
 <div align="center">
