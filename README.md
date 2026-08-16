@@ -10,8 +10,6 @@
 
 # My Campus — GitHub README
 
-<div align="center">
-
 <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=30&duration=3500&pause=900&color=00BFFF&center=true&vCenter=true&width=720&lines=My+Campus+v2.0;Student+Productivity+Reimagined;Built+with+Flutter+and+Firebase" alt="My Campus"/>
 
 # 🎓 My Campus
