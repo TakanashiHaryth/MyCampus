@@ -329,6 +329,8 @@ class AppTheme {
 /// - Tablet 720-1099: sidebar starts collapsed and remains user-expandable.
 /// - Desktop >= 1100: sidebar starts expanded and can collapse to icons.
 /// - Main content is centred and capped at 1440 logical pixels.
+/// - Reading-focused pages may use the shared 1120 logical pixel readable cap
+///   from AppLayout; feature screens do not define one-off page widths.
 ///
 /// Component rules:
 /// - Use PageHeader, SectionSurface, AppEmptyState, AppErrorState,

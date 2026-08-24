@@ -31,6 +31,9 @@ migrate_working_dir/
 cmake-build-*/
 CMakeUserPresets.json
 
+# Local Graphify knowledge graph
+/graphify-out/
+
 # Dart and Flutter generated files
 **/.dart_tool/
 **/.pub-cache/

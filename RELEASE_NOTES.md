@@ -13,10 +13,33 @@
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge\&logo=firebase\&logoColor=black)
 
 **Release Date:** 16 August 2026
+**Last Revised:** 24 August 2026
 **Release Type:** Major Update
 **Previous:** `v1.0.0` → **Current:** `v2.0.0`
+**Build Revision:** `2.0.0+2`
 
 </div>
+
+---
+
+## 🔁 Revision 2 — 24 August 2026
+
+### Added
+
+* New MyCampus launcher icon for Android, Windows and Web
+* Apache License 2.0
+* Responsive profile view/edit coverage at all required screen sizes
+
+### Improved
+
+* Rebuilt the Profile page with clearer identity, academic and account sections
+* Improved responsive profile layouts for phone, tablet and desktop
+* Added consistent readable content width through the shared design system
+* Improved friend-request creation and user-friendly Firestore error handling
+* Cleaned generated build, Graphify and debug artifacts from the workspace
+
+> Profile photo controls are now presented in the UI, but photo upload remains
+> unavailable until Firebase Storage is explicitly approved and configured.
 
 ---
 
@@ -95,6 +118,8 @@ Flutter + Firebase
 * Desktop expandable sidebar
 * Centralized design tokens from `theme.md`
 * Bundled Sora and Inter fonts
+* Professional responsive Profile page
+* Branded launcher icon across Android, Windows and Web
 * Loading, empty and friendly error states
 * Faster startup experience
 * SQLite removed from the active runtime
@@ -144,6 +169,7 @@ The following features are still under active development:
 * Notification Center
 * FCM delivery
 * Cloud Functions
+* Profile photo upload (requires Firebase Storage configuration)
 
 Windows debug builds may also display an upstream FlutterFire platform-thread warning.
 

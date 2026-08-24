@@ -88,10 +88,33 @@ class FirestoreFriendshipRepository implements FriendshipRepository {
     final reference = _friendships.doc(friendshipId);
     final users = [currentUid, targetUid]..sort();
 
-    await _firestore.runTransaction((transaction) async {
-      final snapshot = await transaction.get(reference);
-      final data = snapshot.data();
-      if (data != null) {
+    try {
+      await reference.set({
+        'users': users,
+        'status': FriendshipStatus.pending.name,
+        'requestedBy': currentUid,
+        'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+      return;
+    } on FirebaseException catch (error) {
+      // Existing relationships cannot be overwritten by the security rules.
+      // Inspect them below so the user gets the correct pending/accepted state.
+      if (error.code != 'permission-denied') {
+        throw _mapFriendshipFailure(error);
+      }
+    }
+
+    try {
+      await _firestore.runTransaction((transaction) async {
+        final snapshot = await transaction.get(reference);
+        final data = snapshot.data();
+        if (data == null) {
+          throw const AppFailure(
+            'The friend request could not be created. Please try again.',
+            code: 'request-create-failed',
+          );
+        }
         final existing = Friendship.fromMap(snapshot.id, data);
         switch (existing.status) {
           case FriendshipStatus.accepted:
@@ -117,18 +140,13 @@ class FirestoreFriendshipRepository implements FriendshipRepository {
               'requestedBy': currentUid,
               'updatedAt': FieldValue.serverTimestamp(),
             });
-            return;
         }
-      }
-
-      transaction.set(reference, {
-        'users': users,
-        'status': FriendshipStatus.pending.name,
-        'requestedBy': currentUid,
-        'createdAt': FieldValue.serverTimestamp(),
-        'updatedAt': FieldValue.serverTimestamp(),
       });
-    });
+    } on AppFailure {
+      rethrow;
+    } on FirebaseException catch (error) {
+      throw _mapFriendshipFailure(error);
+    }
   }
 
   @override
@@ -186,4 +204,29 @@ class FirestoreFriendshipRepository implements FriendshipRepository {
       transaction.delete(reference);
     });
   }
+}
+
+AppFailure _mapFriendshipFailure(FirebaseException error) {
+  return switch (error.code) {
+    'permission-denied' => const AppFailure(
+      'The friend request was blocked by database permissions.',
+      code: 'permission-denied',
+    ),
+    'unauthenticated' => const AppFailure(
+      'Your session expired. Please sign in and try again.',
+      code: 'unauthenticated',
+    ),
+    'unavailable' || 'deadline-exceeded' => const AppFailure(
+      'The campus database is temporarily unavailable. Try again shortly.',
+      code: 'firestore-unavailable',
+    ),
+    'failed-precondition' => const AppFailure(
+      'Friend requests are still being prepared. Please try again shortly.',
+      code: 'failed-precondition',
+    ),
+    _ => const AppFailure(
+      'Unable to send the friend request.',
+      code: 'friend-request-failed',
+    ),
+  };
 }

@@ -84,6 +84,10 @@ abstract final class AppMotion {
   static const emphasized = Curves.easeInOutCubicEmphasized;
 }
 
+abstract final class AppLayout {
+  static const readableContentWidth = 1120.0;
+}
+
 abstract final class AppTheme {
   static ThemeData get light {
     final base = ThemeData(

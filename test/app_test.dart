@@ -14,6 +14,7 @@ import 'package:my_campus/models/auth_session.dart';
 import 'package:my_campus/models/dashboard_models.dart';
 import 'package:my_campus/models/friendship.dart';
 import 'package:my_campus/models/user_profile.dart';
+import 'package:my_campus/profile_screen.dart';
 
 class FakeAuthService implements AuthService {
   FakeAuthService([this._session]);
@@ -217,6 +218,47 @@ void main() {
       await tester.pumpWidget(MyCampusApp(dependencies: dependencies));
       await pumpStreams(tester);
       expect(tester.takeException(), isNull, reason: 'Overflow at $size');
+    }
+  });
+
+  testWidgets('profile view and edit modes fit required PRD sizes', (
+    tester,
+  ) async {
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final profiles = FakeProfiles(testProfile);
+
+    for (final size in const [
+      Size(360, 800),
+      Size(412, 915),
+      Size(768, 1024),
+      Size(1366, 768),
+      Size(1920, 1080),
+    ]) {
+      await tester.binding.setSurfaceSize(size);
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: AppTheme.light,
+          home: Scaffold(
+            body: ProfileScreen(
+              key: ValueKey(size),
+              profile: testProfile,
+              repository: profiles,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Academic information'), findsOneWidget);
+      expect(
+        tester.takeException(),
+        isNull,
+        reason: 'Profile overflow at $size',
+      );
+
+      await tester.tap(find.text('Edit profile'));
+      await tester.pumpAndSettle();
+      expect(find.text('Save changes'), findsOneWidget);
+      expect(tester.takeException(), isNull, reason: 'Edit overflow at $size');
     }
   });
 
